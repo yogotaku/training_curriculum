@@ -19,6 +19,7 @@ class CalendarsController < ApplicationController
   end
 
   def get_week
+
     #配列の並びを月曜からに変更
     wdays = ['(月)','(火)','(水)','(木)','(金)','(土)','(日)']
     
@@ -36,7 +37,8 @@ class CalendarsController < ApplicationController
         plans.push(plan.plan) if plan.date == @todays_date + x
         @day = wdays[(@todays_date + x).cwday - 1]  #cwdayメソッド・・・曜日を1~7の数字で返すメソッド。月曜が1
       end
-      days = { :month => (@todays_date + x).month, :date => @todays_date.day + x, :plans => plans, day: "#{@day}"}
+
+      days = { month: (@todays_date + x).month, date: @todays_date.day + x, plans: plans, day: "#{@day}"}
       @week_days.push(days)
     end
   end
